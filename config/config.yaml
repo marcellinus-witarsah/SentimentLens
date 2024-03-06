@@ -3,5 +3,5 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source_path: data/raw/sampled_dataset.zip
+  source_path: data/raw/sample_data.zip
   unzip_dir: artifacts/data_ingestion
