@@ -6,12 +6,12 @@ data_ingestion:
   source_path: data/raw/sample_data.zip
   target_dir: artifacts/data_ingestion
 
-data_labeling:
-  root_dir: artifacts/data_labeling
-  source_path: artifacts/data_ingestion/sample_data.csv
-  target_dir: artifacts/data_labeling
-  
 data_validation:
   root_dir: artifacts/data_validation
   source_path: artifacts/data_ingestion/sample_data.csv
   STATUS_FILE: artifacts/data_validation/status.txt
+
+data_labeling:
+  root_dir: artifacts/data_labeling
+  source_path: artifacts/data_ingestion/sample_data.csv
+  target_dir: artifacts/data_labeling
