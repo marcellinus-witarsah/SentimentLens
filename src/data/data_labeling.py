@@ -21,6 +21,7 @@ class DataLabeling:
 
     def label_data(self):
         """Label data"""
+        logger.info("Label data")
         source_path = self.config.source_path
         df = pd.read_csv(source_path)
         df["sentiment"] = df["overall"].apply(

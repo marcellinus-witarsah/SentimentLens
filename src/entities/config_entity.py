@@ -10,6 +10,14 @@ class DataIngestionConfig:
 
 
 @dataclass(frozen=True)
+class DataValidationConfig:
+    root_dir: Path
+    source_path: Path
+    STATUS_FILE: Path
+    schema: list
+
+
+@dataclass(frozen=True)
 class DataLabelingConfig:
     root_dir: Path
     source_path: Path

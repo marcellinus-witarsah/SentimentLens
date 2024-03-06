@@ -8,6 +8,7 @@ sys.path.append(os.getenv("PROJECT_FOLDER"))
 from src.utils.common import logger
 from src.utils.common import read_yaml, create_directories
 from src.entities.config_entity import DataIngestionConfig
+from src.entities.config_entity import DataValidationConfig
 from src.entities.config_entity import DataLabelingConfig
 
 
@@ -39,6 +40,26 @@ class ConfigurationManager:
             target_dir=config.target_dir,
         )
         return data_ingestion_config
+
+    def get_data_validation_config(self) -> DataValidationConfig:
+        """
+        Get configuration for data validation
+
+        Returns:
+            DataValidationConfig: Configuration for data validation
+        """
+        config = self.config.data_validation
+        schema = self.schema.COLUMNS
+
+        create_directories([config.root_dir])
+
+        data_validation_config = DataValidationConfig(
+            root_dir=config.root_dir,
+            source_path=config.source_path,
+            STATUS_FILE=config.STATUS_FILE,
+            schema=schema,
+        )
+        return data_validation_config
 
     def get_data_labeling_config(self) -> DataLabelingConfig:
         """
