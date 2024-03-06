@@ -1,0 +1,7 @@
+# Configuration for the Workflow
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_path: data/raw/sampled_dataset.zip
+  unzip_dir: artifacts/data_ingestion
