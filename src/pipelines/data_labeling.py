@@ -6,16 +6,16 @@ load_dotenv(find_dotenv())
 sys.path.append(os.getenv("PROJECT_FOLDER"))
 from src.utils.common import logger
 from src.config.configuration import ConfigurationManager
-from src.data.data_ingestion import DataIngestion
+from src.data.data_labeling import DataLabeling
 
-STAGE_NAME = "Data ingestion stage"
+STAGE_NAME = "Data labeling stage"
 try:
     logger.info(f">>>>>> {STAGE_NAME} started <<<<<<")
     configuration_manager = ConfigurationManager()
-    data_ingestion = DataIngestion(
-        config=configuration_manager.get_data_ingestion_config()
+    data_labeling = DataLabeling(
+        config=configuration_manager.get_data_labeling_config()
     )
-    data_ingestion.extract_zip_file()
+    data_labeling.label_data()
     logger.info(f">>>>>> {STAGE_NAME} completed <<<<<<")
 except Exception as e:
     logger.error(e)

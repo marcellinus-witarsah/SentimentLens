@@ -1,1 +1,15 @@
-key: val
+COLUMNS:
+  overall       : float64
+  verified      : bool   
+  reviewTime    : object 
+  reviewerID    : object 
+  asin          : object 
+  style         : object 
+  reviewerName  : object 
+  reviewText    : object 
+  summary       : object 
+  unixReviewTime: int64  
+  vote          : object 
+  image         : object 
+
+TARGET_COLUMN:
