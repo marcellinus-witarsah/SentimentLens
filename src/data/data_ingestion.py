@@ -21,7 +21,7 @@ class DataIngestion:
     def extract_zip_file(self):
         """Extract `.zip` file"""
         logger.info("Extract .zip file")
-        unzip_dir = self.config.unzip_dir
-        os.makedirs(unzip_dir, exist_ok=True)
+        target_dir = self.config.target_dir
+        os.makedirs(target_dir, exist_ok=True)
         with zipfile.ZipFile(self.config.source_path, "r") as zip_ref:
-            zip_ref.extractall(unzip_dir)
+            zip_ref.extractall(target_dir)

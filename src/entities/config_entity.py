@@ -5,4 +5,4 @@ from pathlib import Path
 class DataIngestionConfig:
     root_dir: Path
     source_path: Path
-    unzip_dir: Path 
+    target_dir: Path 

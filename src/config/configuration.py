@@ -33,6 +33,6 @@ class ConfigurationManager:
         data_ingestion_config = DataIngestionConfig(
             root_dir = config.root_dir,
             source_path  = config.source_path,
-            unzip_dir = config.unzip_dir,
+            target_dir = config.target_dir,
         )
         return data_ingestion_config
