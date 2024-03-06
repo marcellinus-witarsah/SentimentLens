@@ -7,10 +7,10 @@ import logging
 import joblib
 import pandas as pd
 from typing import Any
-from pathlib import Path
+from pathlib import WindowsPath, Path
 from box import ConfigBox
 from ensure import ensure_annotations
-from typing import Iterator, Dict, Any
+from typing import Iterator, Dict, Any, Union, List
 from box.exceptions import BoxValueError
 
 
@@ -35,7 +35,7 @@ logger = logging.getLogger("sentiment-classifier-logger")  # get logger
 
 # For Reading .json.gz data
 @ensure_annotations
-def parse(path: str) -> Iterator[Dict[str, Any]]:
+def parse(path: Path):
     """
     Parse data from .gz file
 
@@ -49,9 +49,8 @@ def parse(path: str) -> Iterator[Dict[str, Any]]:
     for l in g:
         yield json.loads(l)
 
-
 @ensure_annotations
-def get_data_frame(path: str) -> pd.DataFrame:
+def get_data_frame(path: Path) -> pd.DataFrame:
     """
     Read .gz file and convert to Pandas DataFrame
 
