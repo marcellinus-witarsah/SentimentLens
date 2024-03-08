@@ -22,3 +22,13 @@ class DataLabelingConfig:
     root_dir: Path
     source_path: Path
     target_dir: Path
+
+
+@dataclass(frozen=True)
+class DataTransformationConfig:
+    root_dir: Path
+    source_path: Path
+    cleaned_data_path: Path
+    transformed_data_path: Path
+    train_data_path: Path
+    test_data_path: Path
