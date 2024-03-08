@@ -11,6 +11,7 @@ from src.entities.config_entity import DataIngestionConfig
 from src.entities.config_entity import DataValidationConfig
 from src.entities.config_entity import DataLabelingConfig
 from src.entities.config_entity import DataTransformationConfig
+from src.entities.config_entity import ModelTrainerConfig
 
 
 class ConfigurationManager:
@@ -101,3 +102,27 @@ class ConfigurationManager:
         )
 
         return data_transformation_config
+
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        """
+        Get configuration for model training
+
+        Returns:
+            ModelTrainerConfig: Configuration for model training
+        """
+        config = self.config.model_trainer
+        params = self.params.MultinomialNB
+        schema = self.schema.TARGET_COLUMN
+
+        create_directories([config.root_dir])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir=config.root_dir,
+            train_data_path=config.train_data_path,
+            test_data_path=config.test_data_path,
+            model_name=config.model_name,
+            model_params=params,
+            target_column=schema.name,
+        )
+
+        return model_trainer_config
