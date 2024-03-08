@@ -10,6 +10,7 @@ from src.utils.common import read_yaml, create_directories
 from src.entities.config_entity import DataIngestionConfig
 from src.entities.config_entity import DataValidationConfig
 from src.entities.config_entity import DataLabelingConfig
+from src.entities.config_entity import DataTransformationConfig
 
 
 class ConfigurationManager:
@@ -78,3 +79,25 @@ class ConfigurationManager:
             target_dir=config.target_dir,
         )
         return data_labeling_config
+
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        """
+        Get configuration for data transformation
+
+        Returns:
+            DataTransformationConfig: Configuration for data transformation
+        """
+        config = self.config.data_transformation
+
+        create_directories([config.root_dir])
+
+        data_transformation_config = DataTransformationConfig(
+            root_dir=config.root_dir,
+            source_path=config.source_path,
+            cleaned_data_path=config.cleaned_data_path,
+            transformed_data_path=config.transformed_data_path,
+            train_data_path=config.train_data_path,
+            test_data_path=config.test_data_path,
+        )
+
+        return data_transformation_config
