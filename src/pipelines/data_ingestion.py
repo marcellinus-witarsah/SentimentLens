@@ -8,14 +8,30 @@ from src.utils.common import logger
 from src.config.configuration import ConfigurationManager
 from src.data.data_ingestion import DataIngestion
 
-STAGE_NAME = "Data ingestion stage"
-try:
-    logger.info(f">>>>>> {STAGE_NAME} started <<<<<<")
-    configuration_manager = ConfigurationManager()
-    data_ingestion = DataIngestion(
-        config=configuration_manager.get_data_ingestion_config()
-    )
-    data_ingestion.extract_zip_file()
-    logger.info(f">>>>>> {STAGE_NAME} completed <<<<<<")
-except Exception as e:
-    logger.error(e)
+
+class DataIngestionTrainingPipeline:
+    def __init__(self):
+        """
+        Instantiate `DataIngestionTrainingPipeline` class
+        """
+        self.configuration_manager = ConfigurationManager()
+
+    def run(self):
+        """
+        Ingest data
+        """
+        data_ingestion = DataIngestion(
+            config=self.configuration_manager.get_data_ingestion_config()
+        )
+        data_ingestion.extract_zip_file()
+
+
+if __name__ == "__main__":
+    STAGE_NAME = "Data ingestion stage"
+    try:
+        logger.info(f">>>>>> {STAGE_NAME} started <<<<<<")
+        data_ingestion_training_pipeline = DataIngestionTrainingPipeline()
+        data_ingestion_training_pipeline.run()
+        logger.info(f">>>>>> {STAGE_NAME} completed <<<<<<")
+    except Exception as e:
+        logger.error(e)

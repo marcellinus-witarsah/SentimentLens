@@ -6,13 +6,13 @@ load_dotenv(find_dotenv())
 sys.path.append(os.getenv("PROJECT_FOLDER"))
 from src.utils.common import logger
 from src.config.configuration import ConfigurationManager
-from src.data.data_labeling import DataLabeling
+from src.models.model_trainer import ModelTrainer
 
 
-class DataLabelingTrainingPipeline:
+class ModelTrainerTrainingPipeline:
     def __init__(self):
         """
-        Instantiate `DataLabelingTrainingPipeline` class
+        Instantiate `ModelTrainerTrainingPipeline` class
         """
         self.configuration_manager = ConfigurationManager()
 
@@ -20,18 +20,18 @@ class DataLabelingTrainingPipeline:
         """
         Ingest data
         """
-        data_labeling = DataLabeling(
-            config=self.configuration_manager.get_data_labeling_config()
+        model_trainer = ModelTrainer(
+            config=self.configuration_manager.get_model_trainer_config()
         )
-        data_labeling.label_data()
+        model_trainer.train()
 
 
 if __name__ == "__main__":
-    STAGE_NAME = "Data labeling stage"
+    STAGE_NAME = "Model training stage"
     try:
         logger.info(f">>>>>> {STAGE_NAME} started <<<<<<")
-        data_labeling_training_pipeline = DataLabelingTrainingPipeline()
-        data_labeling_training_pipeline.run()
+        model_trainer_training_pipeline = ModelTrainerTrainingPipeline()
+        model_trainer_training_pipeline.run()
         logger.info(f">>>>>> {STAGE_NAME} completed <<<<<<")
     except Exception as e:
         logger.error(e)
