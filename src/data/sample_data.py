@@ -16,7 +16,7 @@ from src.utils.common import get_data_frame
 @click.argument("input_folder", type=click.Path(exists=True))
 @click.argument("output_filepath", type=click.Path())
 @ensure_annotations
-def main(input_folder: str, output_filepath: str) -> None:
+def main(input_folder: str, output_filepath: str):
     """
     Perform data sampling
     """
