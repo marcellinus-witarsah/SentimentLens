@@ -11,7 +11,7 @@ from src.entities.config_entity import DataIngestionConfig
 from src.entities.config_entity import DataValidationConfig
 from src.entities.config_entity import DataLabelingConfig
 from src.entities.config_entity import DataTransformationConfig
-from src.entities.config_entity import ModelTrainerConfig
+from src.entities.config_entity import ModelEvaluationConfig
 
 
 class ConfigurationManager:
@@ -103,12 +103,12 @@ class ConfigurationManager:
 
         return data_transformation_config
 
-    def get_model_trainer_config(self) -> ModelTrainerConfig:
+    def get_model_trainer_config(self) -> ModelEvaluationConfig:
         """
         Get configuration for model training
 
         Returns:
-            ModelTrainerConfig: Configuration for model training
+            ModelEvaluationConfigModelTrainerConfig: Configuration for model training
         """
         config = self.config.model_trainer
         params = self.params.MultinomialNB
@@ -126,3 +126,28 @@ class ConfigurationManager:
         )
 
         return model_trainer_config
+
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        """
+        Get configuration for model evaluation
+
+        Returns:
+            ModelEvaluationConfig: Configuration for model training
+        """
+        config = self.config.model_evaluation
+        params = self.params.MultinomialNB
+        schema = self.schema.TARGET_COLUMN
+
+        create_directories([config.root_dir])
+
+        model_evaluation_config = ModelEvaluationConfig(
+            root_dir=Path(config.root_dir),
+            test_data_path=Path(config.test_data_path),
+            model_path=Path(config.model_path),
+            model_params=params,
+            metric_file_name=Path(config.metric_file_name),
+            target_column=schema.name,
+            mlflow_uri=os.getenv("MLFLOW_TRACKING_URI"),
+        )
+
+        return model_evaluation_config
