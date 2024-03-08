@@ -11,3 +11,6 @@ COLUMNS:
   unixReviewTime: int64
   vote          : object
   image         : object
+
+TARGET_COLUMN:
+  name: sentiment
