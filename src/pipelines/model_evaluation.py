@@ -4,7 +4,7 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 sys.path.append(os.getenv("PROJECT_FOLDER"))
-from src.utils.common import logger
+from src.utils.common import logger, save_json
 from src.config.configuration import ConfigurationManager
 from src.models.model_evaluation import ModelEvaluation
 

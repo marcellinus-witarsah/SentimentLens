@@ -10,7 +10,7 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 
 load_dotenv(find_dotenv())
 sys.path.append(os.getenv("PROJECT_FOLDER"))
-from src.utils.common import logger
+from src.utils.common import logger, save_json
 from src.entities.config_entity import ModelEvaluationConfig
 
 
@@ -31,6 +31,7 @@ class ModelEvaluation:
         """
         Evaluate model
         """
+        logger.info("Evaluate model")
         test = pd.read_csv(self.config.test_data_path)
         model = joblib.load(self.config.model_path)
 
@@ -45,13 +46,12 @@ class ModelEvaluation:
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
         with mlflow.start_run():
+            logger.info("Log model into MLFlow")
             y_pred = model.predict(X_test)
             precision, recall, f1 = self.evaluate_metrics(y_test, y_pred)
             scores = {"precision": precision, "recall": recall, "f1_score": f1}
 
-            with open(self.config.metric_file_name, "w") as f:
-                json.dump(scores, f, indent=3)
-
+            save_json(path=self.config.metric_file_name, data=scores)
             mlflow.log_params(self.config.model_params)
             mlflow.log_metric("precision", precision)
             mlflow.log_metric("recall", recall)
