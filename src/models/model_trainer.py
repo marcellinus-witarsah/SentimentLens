@@ -29,7 +29,6 @@ class ModelTrainer:
         """
         logger.info("Train model")
         train = pd.read_csv(self.config.train_data_path)
-        test = pd.read_csv(self.config.test_data_path)
 
         X_train = (
             train.drop(columns=[self.config.target_column], axis=1)
