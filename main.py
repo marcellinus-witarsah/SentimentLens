@@ -10,6 +10,7 @@ from src.pipelines.data_validation import DataValidationTrainingPipeline
 from src.pipelines.data_labeling import DataLabelingTrainingPipeline
 from src.pipelines.data_transformation import DataTransformationTrainingPipeline
 from src.pipelines.model_trainer import ModelTrainerTrainingPipeline
+from src.pipelines.model_evaluation import ModelEvaluationTrainingPipeline
 
 if __name__ == "__main__":
     STAGE_NAME = "Data ingestion stage"
@@ -53,6 +54,15 @@ if __name__ == "__main__":
         logger.info(f">>>>>> {STAGE_NAME} started <<<<<<")
         model_trainer_training_pipeline = ModelTrainerTrainingPipeline()
         model_trainer_training_pipeline.run()
+        logger.info(f">>>>>> {STAGE_NAME} completed <<<<<<")
+    except Exception as e:
+        logger.error(e)
+
+        STAGE_NAME = "Model training stage"
+    try:
+        logger.info(f">>>>>> {STAGE_NAME} started <<<<<<")
+        model_evaluation_training_pipeline = ModelEvaluationTrainingPipeline()
+        model_evaluation_training_pipeline.run()
         logger.info(f">>>>>> {STAGE_NAME} completed <<<<<<")
     except Exception as e:
         logger.error(e)
