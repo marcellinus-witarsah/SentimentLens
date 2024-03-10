@@ -41,7 +41,7 @@ class DataTransformation:
         df = df.reset_index(drop=True)  # reset index
         df.to_csv(self.config.cleaned_data_path, index=False)
 
-    def _preprocess_text(self, text: str) -> str:
+    def preprocess_text(self, text: str) -> str:
         """
         Preprocess text
 
@@ -70,7 +70,7 @@ class DataTransformation:
         logger.info(f"Preprocess text data")
         df = pd.read_csv(self.config.cleaned_data_path)
         df["preprocessed_review_text"] = df["reviewText"].apply(
-            self._preprocess_text
+            self.preprocess_text
         )  # text preprocessing
         df = df[
             (df["preprocessed_review_text"].apply(lambda x: len(x)) != 0)
