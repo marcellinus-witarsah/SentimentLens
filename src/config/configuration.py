@@ -13,6 +13,7 @@ from src.entities.config_entity import DataLabelingConfig
 from src.entities.config_entity import DataTransformationConfig
 from src.entities.config_entity import ModelTrainerConfig
 from src.entities.config_entity import ModelEvaluationConfig
+from src.entities.config_entity import ModelPredictorConfig
 
 
 class ConfigurationManager:
@@ -151,3 +152,18 @@ class ConfigurationManager:
         )
 
         return model_evaluation_config
+
+    def get_model_predictor_config(self):
+        """
+        Get configuration for model training
+        """
+        config = self.config.model_evaluation
+
+        create_directories([config.root_dir])
+
+        model_predictor_config = ModelPredictorConfig(
+            root_dir=Path(config.root_dir),
+            model_path=Path(config.model_path),
+        )
+
+        return model_predictor_config
