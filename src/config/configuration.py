@@ -14,14 +14,15 @@ from src.entities.config_entity import DataTransformationConfig
 from src.entities.config_entity import ModelTrainerConfig
 from src.entities.config_entity import ModelEvaluationConfig
 from src.entities.config_entity import ModelPredictorConfig
+from src.constants import CONFIG_FILE_PATH, SCHEMA_FILE_PATH, PARAMS_FILE_PATH
 
 
 class ConfigurationManager:
     def __init__(
         self,
-        config_filepath: str = os.getenv("CONFIG_FILE_PATH"),
-        params_filepath: str = os.getenv("PARAMS_FILE_PATH"),
-        schema_filepath: str = os.getenv("SCHEMA_FILE_PATH"),
+        config_filepath: str = CONFIG_FILE_PATH,
+        params_filepath: str = PARAMS_FILE_PATH,
+        schema_filepath: str = SCHEMA_FILE_PATH,
     ):
         self.config = read_yaml(Path(config_filepath))
         self.params = read_yaml(Path(params_filepath))
@@ -39,9 +40,9 @@ class ConfigurationManager:
         config = self.config.data_ingestion
         create_directories([config.root_dir])
         data_ingestion_config = DataIngestionConfig(
-            root_dir=config.root_dir,
-            source_path=config.source_path,
-            target_dir=config.target_dir,
+            root_dir=Path(config.root_dir),
+            source_path=Path(config.source_path),
+            target_dir=Path(config.target_dir),
         )
         return data_ingestion_config
 
@@ -58,9 +59,9 @@ class ConfigurationManager:
         create_directories([config.root_dir])
 
         data_validation_config = DataValidationConfig(
-            root_dir=config.root_dir,
-            source_path=config.source_path,
-            STATUS_FILE=config.STATUS_FILE,
+            root_dir=Path(config.root_dir),
+            source_path=Path(config.source_path),
+            STATUS_FILE=Path(config.STATUS_FILE),
             schema=schema,
         )
         return data_validation_config
@@ -77,9 +78,9 @@ class ConfigurationManager:
         create_directories([config.root_dir])
 
         data_labeling_config = DataLabelingConfig(
-            root_dir=config.root_dir,
-            source_path=config.source_path,
-            target_dir=config.target_dir,
+            root_dir=Path(config.root_dir),
+            source_path=Path(config.source_path),
+            target_dir=Path(config.target_dir),
         )
         return data_labeling_config
 
@@ -95,12 +96,12 @@ class ConfigurationManager:
         create_directories([config.root_dir])
 
         data_transformation_config = DataTransformationConfig(
-            root_dir=config.root_dir,
-            source_path=config.source_path,
-            cleaned_data_path=config.cleaned_data_path,
-            transformed_data_path=config.transformed_data_path,
-            train_data_path=config.train_data_path,
-            test_data_path=config.test_data_path,
+            root_dir=Path(config.root_dir),
+            source_path=Path(config.source_path),
+            cleaned_data_path=Path(config.cleaned_data_path),
+            transformed_data_path=Path(config.transformed_data_path),
+            train_data_path=Path(config.train_data_path),
+            test_data_path=Path(config.test_data_path),
         )
 
         return data_transformation_config
@@ -119,8 +120,8 @@ class ConfigurationManager:
         create_directories([config.root_dir])
 
         model_trainer_config = ModelTrainerConfig(
-            root_dir=config.root_dir,
-            train_data_path=config.train_data_path,
+            root_dir=Path(config.root_dir),
+            train_data_path=Path(config.train_data_path),
             model_name=config.model_name,
             model_params=params,
             target_column=schema.name,

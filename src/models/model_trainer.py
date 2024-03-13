@@ -44,4 +44,4 @@ class ModelTrainer:
         )
         model.fit(X_train, y_train)
         logger.info("Save model")
-        joblib.dump(model, self.config.root_dir + "/" + self.config.model_name)
+        joblib.dump(model, self.config.root_dir / self.config.model_name)

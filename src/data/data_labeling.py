@@ -28,4 +28,4 @@ class DataLabeling:
             lambda x: 1 if x >= 3 else 0
         )  # convert overall to sentiment
         df = df.drop(columns=["overall"])
-        df.to_csv(self.config.target_dir + "/sample_data.csv", index=False)
+        df.to_csv(self.config.target_dir / "sample_data.csv", index=False)
