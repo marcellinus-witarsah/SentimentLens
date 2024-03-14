@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request
 from src.pipelines.model_predictor import ModelPredictoripeline
 
@@ -5,8 +6,14 @@ app = Flask(__name__)
 
 
 @app.route("/", methods=["GET"])
-def hello():
+def home():
     return render_template("index.html")
+
+
+@app.route("/train", methods=["GET"])
+def train():
+    os.system("python main.py")
+    return "Training Succesful"
 
 
 @app.route("/", methods=["POST", "GET"])
