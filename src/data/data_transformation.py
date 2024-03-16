@@ -1,6 +1,7 @@
 import os
 import sys
 import string
+import nltk
 import pandas as pd
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -22,6 +23,9 @@ class DataTransformation:
         Args:
             config (DataTransformationConfig): configuration for data transformation
         """
+        nltk.download("stopwords")
+        nltk.download("punkt")
+        nltk.download("wordnet")
         self.stopwords_en = stopwords.words("english")
         self.punctuations = string.punctuation
         self.lemmatizer = WordNetLemmatizer()
