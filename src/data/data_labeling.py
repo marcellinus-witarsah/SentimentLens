@@ -1,10 +1,5 @@
-import os
-import sys
 import pandas as pd
-from dotenv import load_dotenv, find_dotenv
 
-load_dotenv(find_dotenv())
-sys.path.append(os.getenv("PROJECT_FOLDER"))
 from src.utils.common import logger
 from src.entities.config_entity import DataLabelingConfig
 

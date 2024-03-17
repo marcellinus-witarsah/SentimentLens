@@ -1,11 +1,8 @@
 import os
-import sys
-from dotenv import load_dotenv, find_dotenv
 import zipfile
-load_dotenv(find_dotenv())
-sys.path.append(os.getenv("PROJECT_FOLDER"))
 from src.utils.common import logger
 from src.entities.config_entity import DataIngestionConfig
+
 
 class DataIngestion:
     def __init__(self, config: DataIngestionConfig):

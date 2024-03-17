@@ -1,14 +1,9 @@
-import os
-import sys
 import joblib
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.naive_bayes import MultinomialNB
-from dotenv import load_dotenv, find_dotenv
 
-load_dotenv(find_dotenv())
-sys.path.append(os.getenv("PROJECT_FOLDER"))
 from src.utils.common import logger
 from src.entities.config_entity import ModelTrainerConfig
 

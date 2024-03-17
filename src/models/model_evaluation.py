@@ -1,15 +1,9 @@
-import os
-import sys
-import json
 import joblib
 import mlflow
 import pandas as pd
 from urllib.parse import urlparse
-from dotenv import load_dotenv, find_dotenv
 from sklearn.metrics import precision_score, recall_score, f1_score
 
-load_dotenv(find_dotenv())
-sys.path.append(os.getenv("PROJECT_FOLDER"))
 from src.utils.common import logger, save_json
 from src.entities.config_entity import ModelEvaluationConfig
 

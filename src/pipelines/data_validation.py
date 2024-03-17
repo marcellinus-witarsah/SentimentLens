@@ -1,9 +1,3 @@
-import os
-import sys
-from dotenv import load_dotenv, find_dotenv
-
-load_dotenv(find_dotenv())
-sys.path.append(os.getenv("PROJECT_FOLDER"))
 from src.utils.common import logger
 from src.config.configuration import ConfigurationManager
 from src.data.data_validation import DataValidation

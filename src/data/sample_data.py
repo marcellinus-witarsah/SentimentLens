@@ -1,13 +1,8 @@
-import os
-import sys
 import click
 import pandas as pd
 from pathlib import Path
-from dotenv import find_dotenv, load_dotenv
 from ensure import ensure_annotations
 
-load_dotenv(find_dotenv())
-sys.path.append(os.getenv("PROJECT_FOLDER"))
 from src.utils.common import logger
 from src.utils.common import get_data_frame
 

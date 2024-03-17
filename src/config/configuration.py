@@ -1,10 +1,6 @@
 import os
-import sys
-from dotenv import load_dotenv, find_dotenv
 from pathlib import Path
 
-load_dotenv(find_dotenv())
-sys.path.append(os.getenv("PROJECT_FOLDER"))
 from src.utils.common import logger
 from src.utils.common import read_yaml, create_directories
 from src.entities.config_entity import DataIngestionConfig
@@ -158,7 +154,7 @@ class ConfigurationManager:
         """
         Get configuration for model training
         """
-        config = self.config.model_evaluation
+        config = self.config.model_predictor
 
         create_directories([config.root_dir])
 
