@@ -94,5 +94,6 @@ To deploy the machine learning model through a website, I utilize Flask, a light
 I implement a Continuous Integration/Continuous Deployment (CI/CD) pipeline using GitHub Actions. This pipeline automates the process of building, and deploying the Flask application. Whenever code updates are pushed to the GitHub repository, GitHub Actions automatically trigger the CI/CD pipeline.The pipeline begins by building the Docker image of the Flask application. Once the image is built successfully, it is tagged and pushed into the Amazon Elastic Container Registry (ECR). Then, EC2 instance hosting the website pulls the latest Docker image from the ECR. The updated image is then deployed on the EC2 instance and update the website with the latest changes.
 
 ## Development in Future
+- [ ]  Improve Documentation
 - [ ]  Utilize word embedding for sentiment classification
 - [ ]  Create an API for the model prediction
