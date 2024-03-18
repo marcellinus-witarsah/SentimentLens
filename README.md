@@ -97,3 +97,5 @@ I implement a Continuous Integration/Continuous Deployment (CI/CD) pipeline usin
 - [ ]  Improve Documentation
 - [ ]  Utilize word embedding for sentiment classification
 - [ ]  Create an API for the model prediction
+- [ ]  Provision cloud services infrastructure
+- [ ]  Implement Continuosu Training
