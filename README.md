@@ -37,7 +37,7 @@ For running the application locally there are two ways: using Python or using Do
 ```bash
   conda install -n <environment_name> python==3.10.13
   conda activate <environment_name>
-  cd customer-product-reviews-sentiment-classifier
+  cd SentimentLens
   pip install -r requirements.txt
   python app.py
 ```
