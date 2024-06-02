@@ -1,5 +1,5 @@
 
-# SentimentLens: Understanding Customer Sentiments in Product Reviews
+# Customer Review Sentiment Classification
 
 ## Project Overview
 - Created a classifier to predict sentiment of customer reviews wither positive or negative.
